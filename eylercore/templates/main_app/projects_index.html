@@ -12,10 +12,22 @@
         <li class="project-item">
             <h3>{{ project.name }}</h3>
             <p>{{ project.description|truncatewords:20 }}</p>
-            <p><small>Created: {{ project.created_at|date:"M d, Y" }}</small></p>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+                <div>
+                    <small class="text-muted">Created: {{ project.created_at|date:"M d, Y" }}</small>
+                </div>
+                <div>
+                    <span style="background: #8b0000; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem;">
+                        📋 {{ project.tasks.count }} task{{ project.tasks.count|pluralize }}
+                    </span>
+                </div>
+            </div>
+            
             <div class="project-actions">
                 <a href="{% url 'main_app:project_detail' project.id %}" class="btn btn-back">View Details</a>
                 <a href="{% url 'main_app:edit_project' project.id %}" class="btn btn-edit">Edit</a>
+                <a href="{% url 'main_app:tasks_index' project.id %}" class="btn btn-save">Tasks</a>
                 <a href="{% url 'main_app:delete_project' project.id %}" class="btn btn-delete">Delete</a>
             </div>
         </li>

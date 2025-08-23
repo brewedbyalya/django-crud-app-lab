@@ -12,6 +12,22 @@
         <a href="{% url 'main_app:tags_index' %}" class="btn btn-edit">🏷️ Manage Tags</a>
     </div>
 
+    <div class="tag-filter" style="margin: 20px 0; padding: 15px; background: rgba(42, 42, 42, 0.5); border-radius: 10px;">
+        <h4 style="color: #daa520; margin-bottom: 10px;">🔍 Filter by Tag:</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            {% for tag in all_tags %}
+            <a href="?tag={{ tag.id }}" style="display: inline-block; padding: 6px 12px; border-radius: 15px; 
+                      background: {{ tag.color }}; color: #fff; text-decoration: none; font-size: 0.9rem;">
+                {{ tag.name }}
+            </a>
+            {% endfor %}
+            <a href="{% url 'main_app:tasks_index' project.id %}" style="display: inline-block; padding: 6px 12px; border-radius: 15px; 
+                      background: #444; color: #fff; text-decoration: none; font-size: 0.9rem;">
+                🔄 Clear Filter
+            </a>
+        </div>
+    </div>
+
     {% if tasks %}
     <div class="tasks-grid" style="margin-top: 30px;">
         {% for task in tasks %}

@@ -4,13 +4,38 @@
 
 {% block content %}
 <div class="project-details">
-    <h2>📜 {{ project.name }}</h2>
+    <h2>{{ project.name }}</h2>
     
     <div class="project-info">
-        <p><strong>🔮 Description:</strong><br>{{ project.description }}</p>
-        <p><strong>🕰️ Created:</strong> {{ project.created_at|date:"F j, Y" }}</p>
-        <p><strong>⚡ Last Updated:</strong> {{ project.updated_at|date:"F j, Y" }}</p>
-        <p><strong>👤 Created by:</strong> {{ project.user.username }}</p>
+        <p><strong>Description:</strong><br>{{ project.description }}</p>
+        <p><strong>Created:</strong> {{ project.created_at|date:"M d, Y" }}</p>
+        <p><strong>Last Updated:</strong> {{ project.updated_at|date:"M d, Y" }}</p>
+        <p><strong>Created by:</strong> {{ project.user.username }}</p>
+    </div>
+
+    <div class="project-tags" style="margin: 25px 0; padding: 20px; background: rgba(42, 42, 42, 0.5); border-radius: 12px;">
+        <h3 style="color: #daa520; margin-bottom: 15px;">🏷️ Project Tags</h3>
+        {% with project_tags=project.tasks.all|slice:":10" %}
+            {% if project_tags %}
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                {% for task in project_tags %}
+                    {% for tag in task.tags.all %}
+                    <span style="display: inline-block; padding: 6px 12px; border-radius: 15px; 
+                              background: {{ tag.color }}; color: #fff; font-size: 0.9rem;">
+                        {{ tag.name }}
+                    </span>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            {% else %}
+            <p style="color: #8a2be2; text-align: center;">No tags yet. Add tags to your tasks!</p>
+            {% endif %}
+        {% endwith %}
+        <div style="text-align: center; margin-top: 15px;">
+            <a href="{% url 'main_app:tags_index' %}" class="btn btn-edit" style="padding: 8px 16px; font-size: 0.9rem;">
+                🏷️ Manage All Tags
+            </a>
+        </div>
     </div>
 
     <div class="form-actions">
@@ -24,29 +49,70 @@
             </button>
         </form>
         
+        <a href="{% url 'main_app:tasks_index' project.id %}" class="btn btn-save">📋 View Tasks ({{ project.tasks.count }})</a>
+        <a href="{% url 'main_app:add_task' project.id %}" class="btn btn-save">➕ Add Task</a>
         <a href="{% url 'main_app:projects_index' %}" class="btn btn-back">↩️ Back to Projects</a>
     </div>
 
-    <div class="tasks-section" style="margin-top: 40px;">
-        <h3 style="color: #daa520; border-bottom: 2px solid #555; padding-bottom: 15px; margin-bottom: 25px;">
-            ⚔️ Tasks for this Project
+    <div class="tasks-preview" style="margin-top: 40px;">
+        <h3 style="color: #daa520; border-bottom: 2px solid #555; padding-bottom: 15px;">
+            ⚔️ Recent Tasks
         </h3>
         
-        <!-- Placeholder -->
-        <div class="empty-state">
-            <p>📋 No tasks yet. <a href="#" style="color: #8a2be2; text-decoration: none;">Add your first task</a></p>
-        </div>
-    </div>
-
-    <div class="tags-section" style="margin-top: 40px;">
-        <h3 style="color: #daa520; border-bottom: 2px solid #555; padding-bottom: 15px; margin-bottom: 25px;">
-            🏷️ Project Tags
-        </h3>
-        
-        <!-- Placeholder  -->
-        <div class="empty-state">
-            <p>🔖 No tags yet. <a href="#" style="color: #8a2be2; text-decoration: none;">Add some tags</a></p>
-        </div>
+        {% with recent_tasks=project.tasks.all|slice:":5" %}
+            {% if recent_tasks %}
+            <div style="margin-top: 20px;">
+                {% for task in recent_tasks %}
+                <div style="background: rgba(42, 42, 42, 0.5); padding: 15px; border-radius: 10px; margin-bottom: 12px; border-left: 4px solid 
+                    {% if task.status == 'done' %}#228b22
+                    {% elif task.status == 'in_progress' %}#daa520
+                    {% elif task.status == 'review' %}#8a2be2
+                    {% else %}#444{% endif %};">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #c0c0c0; font-weight: bold;">{{ task.title }}</span>
+                        <span style="font-size: 0.9rem; padding: 4px 12px; border-radius: 12px; 
+                                  background: {% if task.status == 'done' %}#228b22
+                                            {% elif task.status == 'in_progress' %}#daa520
+                                            {% elif task.status == 'review' %}#8a2be2
+                                            {% else %}#444{% endif %};
+                                  color: {% if task.status == 'in_progress' %}#000{% else %}#fff{% endif %};">
+                            {{ task.get_status_display }}
+                        </span>
+                    </div>
+                    
+                    <!-- ADD TAGS TO TASK PREVIEW -->
+                    {% if task.tags.all %}
+                    <div style="margin-top: 8px;">
+                        {% for tag in task.tags.all %}
+                        <span style="display: inline-block; padding: 3px 8px; border-radius: 10px; 
+                                  background: {{ tag.color }}; color: #fff; font-size: 0.7rem; margin-right: 5px;">
+                            {{ tag.name }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    {% if task.due_date %}
+                    <div style="color: #8a2be2; font-size: 0.9rem; margin-top: 5px;">
+                        📅 Due: {{ task.due_date|date:"M j" }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="{% url 'main_app:tasks_index' project.id %}" class="btn btn-back">View All Tasks</a>
+                <a href="{% url 'main_app:add_task' project.id %}" class="btn btn-save">➕ Add New Task</a>
+            </div>
+            {% else %}
+            <div style="text-align: center; padding: 40px; color: #8a2be2;">
+                <p>📋 No tasks yet for this project.</p>
+                <a href="{% url 'main_app:add_task' project.id %}" class="btn btn-save" style="margin-top: 15px;">
+                    Create Your First Task
+                </a>
+            </div>
+            {% endif %}
+        {% endwith %}
     </div>
 </div>
 {% endblock %}

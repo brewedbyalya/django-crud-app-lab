@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Project</title>
+</head>
+<body>
+    <h1>Add New Project</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Project</button>
+    </form>
+    <a href="{% url 'main_app:projects_index' %}">Back to Projects</a>
+</body>
+</html>

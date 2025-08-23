@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Eylercore{% endblock %}
+
+{% block content %}
+<h2>Welcome to Eylercore</h2>
+<p>A place where you can organize your personal projects.</p>
+
+{% if user.is_authenticated %}
+    <p>Hello, {{ user.username }}!</p>
+    <div class="nav-links">
+        <a href="{% url 'main_app:projects_index' %}" class="btn btn-back">View Projects</a>
+        <a href="{% url 'main_app:add_project' %}" class="btn btn-save">Create New Project</a>
+    </div>
+{% else %}
+    <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'main_app:signup' %}">sign up</a> to get started.</p>
+{% endif %}
+{% endblock %}

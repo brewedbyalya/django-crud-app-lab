@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit {{ project.name }}{% endblock %}
+
+{% block content %}
+<div class="edit-form">
+    <h2>Edit Project: {{ project.name }}</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="id_name">Project Name:</label>
+            {{ form.name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_description">Description:</label>
+            {{ form.description }}
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-save">Save Changes</button>
+            <a href="{% url 'main_app:project_detail' project.id %}" class="btn btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

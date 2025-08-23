@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}My Projects - Eylercore{% endblock %}
+
+{% block content %}
+<h2>My Projects</h2>
+<a href="{% url 'main_app:add_project' %}" class="btn btn-save">Add New Project</a>
+
+{% if projects %}
+    <ul class="project-list">
+    {% for project in projects %}
+        <li class="project-item">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description|truncatewords:20 }}</p>
+            <p><small>Created: {{ project.created_at|date:"M d, Y" }}</small></p>
+            <div class="project-actions">
+                <a href="{% url 'main_app:project_detail' project.id %}" class="btn btn-back">View Details</a>
+                <a href="{% url 'main_app:edit_project' project.id %}" class="btn btn-edit">Edit</a>
+                <a href="{% url 'main_app:delete_project' project.id %}" class="btn btn-delete">Delete</a>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No projects yet. <a href="{% url 'main_app:add_project' %}">Create your first project!</a></p>
+{% endif %}
+{% endblock %}

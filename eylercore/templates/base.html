@@ -20,7 +20,7 @@
                     <span>👻 Welcome, {{ user.username }}!</span>
                     <form action="{% url 'logout' %}" method="post" style="display: inline;">
                         {% csrf_token %}
-                        <button type="submit" style="background: none; border: none; color: #bd93f9; cursor: pointer; font-family: inherit; font-size: inherit; padding: 0; text-decoration: underline;">
+                        <button type="submit" class="btn-logout-nav">
                             🚪 Logout
                         </button>
                     </form>

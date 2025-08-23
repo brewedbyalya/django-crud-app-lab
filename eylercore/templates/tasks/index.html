@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Tasks - {{ project.name }}{% endblock %}
+
+{% block content %}
+<div class="project-details">
+    <h2>⚔️ Tasks for: {{ project.name }}</h2>
+    
+    <div class="action-buttons">
+        <a href="{% url 'main_app:add_task' project.id %}" class="btn btn-save">➕ Add New Task</a>
+        <a href="{% url 'main_app:project_detail' project.id %}" class="btn btn-back">↩️ Back to Project</a>
+        <a href="{% url 'main_app:tags_index' %}" class="btn btn-edit">🏷️ Manage Tags</a>
+    </div>
+
+    {% if tasks %}
+    <div class="tasks-grid" style="margin-top: 30px;">
+        {% for task in tasks %}
+        <div class="task-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); 
+                                     padding: 25px; border-radius: 15px; border: 2px solid #555; 
+                                     margin-bottom: 20px; position: relative;">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                <h3 style="color: #daa520; margin: 0; font-size: 1.3rem;">
+                    {{ task.title }}
+                </h3>
+                <span style="padding: 6px 16px; border-radius: 15px; font-size: 0.9rem; 
+                           background: {% if task.status == 'done' %}#228b22
+                                     {% elif task.status == 'in_progress' %}#daa520
+                                     {% elif task.status == 'review' %}#8a2be2
+                                     {% else %}#444{% endif %};
+                           color: {% if task.status == 'in_progress' %}#000{% else %}#fff{% endif %};">
+                    {{ task.get_status_display }}
+                </span>
+            </div>
+            
+            {% if task.description %}
+            <div style="color: #c0c0c0; margin-bottom: 15px; line-height: 1.6;">
+                {{ task.description|truncatewords:30 }}
+            </div>
+            {% endif %}
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div>
+                    <strong style="color: #daa520;">Priority:</strong>
+                    <span style="color: {% if task.priority == 'high' or task.priority == 'urgent' %}#ff4500{% else %}#c0c0c0{% endif %};">
+                        {{ task.get_priority_display }}
+                    </span>
+                </div>
+                <div>
+                    <strong style="color: #daa520;">Due:</strong>
+                    <span style="color: #c0c0c0;">
+                        {% if task.due_date %}{{ task.due_date|date:"M j, Y" }}{% else %}No deadline{% endif %}
+                    </span>
+                </div>
+                <div>
+                    <strong style="color: #daa520;">Assigned:</strong>
+                    <span style="color: #c0c0c0;">
+                        {% if task.assigned_to %}{{ task.assigned_to.username }}{% else %}Unassigned{% endif %}
+                    </span>
+                </div>
+            </div>
+            
+            {% if task.tags.all %}
+            <div style="margin-bottom: 15px;">
+                <strong style="color: #daa520;">Tags:</strong>
+                {% for tag in task.tags.all %}
+                <span style="display: inline-block; padding: 4px 12px; border-radius: 12px; 
+                          background: {{ tag.color }}; color: #fff; margin: 2px; font-size: 0.8rem;">
+                    {{ tag.name }}
+                </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="task-actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="{% url 'main_app:task_detail' project.id task.id %}" class="btn btn-back" style="padding: 10px 20px; font-size: 0.9rem;">👁️ View</a>
+                <a href="{% url 'main_app:edit_task' project.id task.id %}" class="btn btn-edit" style="padding: 10px 20px; font-size: 0.9rem;">✏️ Edit</a>
+                <a href="{% url 'main_app:delete_task' project.id task.id %}" class="btn btn-delete" style="padding: 10px 20px; font-size: 0.9rem;">🗑️ Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state" style="text-align: center; padding: 60px; color: #8a2be2;">
+        <p style="font-size: 1.3rem;">📋 No tasks yet for this project.</p>
+        <a href="{% url 'main_app:add_task' project.id %}" class="btn btn-save" style="margin-top: 20px;">
+            Create Your First Task
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

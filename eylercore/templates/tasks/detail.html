@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ task.title }} - Details{% endblock %}
+
+{% block content %}
+<div class="project-details">
+    <h2>📋 {{ task.title }}</h2>
+    
+    <div class="task-header" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 30px;">
+        <div style="background: rgba(42, 42, 42, 0.5); padding: 20px; border-radius: 12px;">
+            <strong style="color: #daa520;">Status:</strong>
+            <span style="padding: 8px 16px; border-radius: 20px; 
+                       background: {% if task.status == 'done' %}#228b22
+                                 {% elif task.status == 'in_progress' %}#daa520
+                                 {% elif task.status == 'review' %}#8a2be2
+                                 {% else %}#444{% endif %};
+                       color: {% if task.status == 'in_progress' %}#000{% else %}#fff{% endif %};">
+                {{ task.get_status_display }}
+            </span>
+        </div>
+        
+        <div style="background: rgba(42, 42, 42, 0.5); padding: 20px; border-radius: 12px;">
+            <strong style="color: #daa520;">Priority:</strong>
+            <span style="color: {% if task.priority == 'high' or task.priority == 'urgent' %}#ff4500{% else %}#c0c0c0{% endif %};">
+                {{ task.get_priority_display }}
+            </span>
+        </div>
+        
+        <div style="background: rgba(42, 42, 42, 0.5); padding: 20px; border-radius: 12px;">
+            <strong style="color: #daa520;">Due Date:</strong>
+            <span style="color: #c0c0c0;">
+                {% if task.due_date %}{{ task.due_date|date:"F j, Y" }}{% else %}No deadline{% endif %}
+            </span>
+        </div>
+        
+        <div style="background: rgba(42, 42, 42, 0.5); padding: 20px; border-radius: 12px;">
+            <strong style="color: #daa520;">Assigned To:</strong>
+            <span style="color: #c0c0c0;">
+                {% if task.assigned_to %}{{ task.assigned_to.username }}{% else %}Unassigned{% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="task-description" style="background: rgba(42, 42, 42, 0.5); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+        <h3 style="color: #daa520; margin-bottom: 20px; font-family: 'MedievalSharp', cursive;">📝 Description</h3>
+        <p style="color: #c0c0c0; line-height: 1.8; font-size: 1.1rem;">
+            {{ task.description|linebreaksbr }}
+        </p>
+    </div>
+
+    {% if task.tags.all %}
+    <div class="task-tags" style="background: rgba(42, 42, 42, 0.5); padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+        <h3 style="color: #daa520; margin-bottom: 20px; font-family: 'MedievalSharp', cursive;">🏷️ Tags</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            {% for tag in task.tags.all %}
+            <span style="display: inline-block; padding: 8px 16px; border-radius: 15px; 
+                      background: {{ tag.color }}; color: #fff; font-size: 0.9rem;">
+                {{ tag.name }}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="task-meta" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+        <div style="text-align: center; padding: 20px; background: rgba(42, 42, 42, 0.5); border-radius: 12px;">
+            <div style="font-size: 2rem; color: #8a2be2; margin-bottom: 10px;">🕰️</div>
+            <div style="color: #c0c0c0;">Created</div>
+            <div style="color: #daa520; font-weight: bold;">{{ task.created_at|date:"M j, Y" }}</div>
+        </div>
+        <div style="text-align: center; padding: 20px; background: rgba(42, 42, 42, 0.5); border-radius: 12px;">
+            <div style="font-size: 2rem; color: #8a2be2; margin-bottom: 10px;">⚡</div>
+            <div style="color: #c0c0c0;">Last Updated</div>
+            <div style="color: #daa520; font-weight: bold;">{{ task.updated_at|date:"M j, Y" }}</div>
+        </div>
+        <div style="text-align: center; padding: 20px; background: rgba(42, 42, 42, 0.5); border-radius: 12px;">
+            <div style="font-size: 2rem; color: #8a2be2; margin-bottom: 10px;">📁</div>
+            <div style="color: #c0c0c0;">Project</div>
+            <div style="color: #daa520; font-weight: bold;">{{ task.project.name }}</div>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <a href="{% url 'main_app:edit_task' project.id task.id %}" class="btn btn-edit">✏️ Edit Task</a>
+        <a href="{% url 'main_app:delete_task' project.id task.id %}" class="btn btn-delete">🗑️ Delete Task</a>
+        <a href="{% url 'main_app:tasks_index' project.id %}" class="btn btn-back">↩️ Back to Tasks</a>
+        <a href="{% url 'main_app:project_detail' project.id %}" class="btn btn-back">🏰 Back to Project</a>
+    </div>
+</div>
+{% endblock %}

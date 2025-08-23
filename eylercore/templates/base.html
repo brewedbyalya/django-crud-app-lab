@@ -16,6 +16,7 @@
             <div class="nav-links">
                 <a href="{% url 'main_app:home' %}">🏰 Home</a>
                 <a href="{% url 'main_app:projects_index' %}">📜 Projects</a>
+                <a href="{% url 'main_app:tags_index' %}">🏷️ Tags</a>
                 {% if user.is_authenticated %}
                     <span>👻 Welcome, {{ user.username }}!</span>
                     <form action="{% url 'logout' %}" method="post" style="display: inline;">

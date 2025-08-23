@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Task - {{ task.title }}{% endblock %}
+
+{% block content %}
+<div class="delete-confirm">
+    <h2>🗑️ Delete Task</h2>
+    
+    <p class="warning">⚡ Warning: This action cannot be undone!</p>
+    <p>Are you sure you want to delete the task "<strong style="color: #ff4500;">{{ task.title }}</strong>"?</p>
+    <p>This task belongs to project: <strong style="color: #daa520;">{{ project.name }}</strong></p>
+    
+    <div style="background: rgba(42, 42, 42, 0.5); padding: 20px; border-radius: 12px; margin: 20px 0;">
+        <strong style="color: #daa520;">Status:</strong> {{ task.get_status_display }}<br>
+        <strong style="color: #daa520;">Priority:</strong> {{ task.get_priority_display }}<br>
+        {% if task.due_date %}
+        <strong style="color: #daa520;">Due Date:</strong> {{ task.due_date|date:"M j, Y" }}
+        {% endif %}
+    </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-delete">⚡ Delete Task</button>
+        <a href="{% url 'main_app:task_detail' project.id task.id %}" class="btn btn-cancel">🚫 Cancel</a>
+    </form>
+</div>
+{% endblock %}

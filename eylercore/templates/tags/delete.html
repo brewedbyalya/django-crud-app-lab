@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Tag - {{ tag.name }}{% endblock %}
+
+{% block content %}
+<div class="delete-confirm">
+    <h2>🗑️ Delete Tag</h2>
+    
+    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+        <span style="display: inline-block; width: 30px; height: 30px; border-radius: 50%; 
+                   background: {{ tag.color }}; margin-right: 15px; border: 3px solid #fff;">
+        </span>
+        <span style="color: #daa520; font-size: 1.5rem; font-weight: bold;">{{ tag.name }}</span>
+    </div>
+    
+    <p class="warning">⚡ Warning: This action cannot be undone!</p>
+    <p>Are you sure you want to delete the tag "<strong style="color: #ff4500;">{{ tag.name }}</strong>"?</p>
+    <p>This tag will be removed from all tasks that use it.</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-delete">⚡ Delete Tag</button>
+        <a href="{% url 'main_app:tags_index' %}" class="btn btn-cancel">🚫 Cancel</a>
+    </form>
+</div>
+{% endblock %}

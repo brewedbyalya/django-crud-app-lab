@@ -206,7 +206,6 @@ body {
     box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
 }
 
-/* Form Styles */
 .form-group {
     margin-bottom: 30px;
     position: relative;
@@ -345,7 +344,6 @@ body {
     gap: 15px;
 }
 
-/* Delete Confirmation */
 .delete-confirm {
     margin: 40px 0;
     padding: 50px;
@@ -373,7 +371,6 @@ body {
     font-family: 'MedievalSharp', cursive;
 }
 
-/* Messages */
 .messages {
     margin: 25px 0;
 }
@@ -400,7 +397,6 @@ body {
     border-color: #8b0000;
 }
 
-/* Home Page Specific */
 .content h2 {
     color: #daa520;
     font-family: 'UnifrakturMaguntia', cursive;
@@ -418,7 +414,6 @@ body {
     line-height: 1.8;
 }
 
-/* Login/Signup Pages */
 .auth-container {
     max-width: 500px;
     margin: 0 auto;
@@ -452,7 +447,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
@@ -490,7 +484,6 @@ body {
     }
 }
 
-/* Scrollbar Styling */
 ::-webkit-scrollbar {
     width: 14px;
 }
@@ -510,7 +503,6 @@ body {
     background: linear-gradient(135deg, #8b0000 0%, #8a2be2 100%);
 }
 
-/* Animation for page transitions */
 .content {
     animation: fadeIn 0.6s ease-in-out;
 }
@@ -536,7 +528,6 @@ body {
     color: #fff;
 }
 
-/* Logout Button in Navigation */
 .nav-links form {
     display: inline;
 }
@@ -561,7 +552,6 @@ body {
     box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
 }
 
-/* Add Form Styles */
 .add-form-container {
     max-width: 800px;
     margin: 0 auto;
@@ -866,7 +856,6 @@ body {
     }
 }
 
-/* Loading Animation */
 .loading-spinner {
     display: inline-block;
     width: 20px;
@@ -890,4 +879,127 @@ textarea:focus,
 select:focus {
     outline: 3px solid #8a2be2;
     outline-offset: 2px;
+}
+
+.tasks-section, .tags-section {
+    background: linear-gradient(145deg, #1a1a1a, #252525);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #555;
+    margin-top: 30px;
+}
+
+.tasks-section h3, .tags-section h3 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.project-stats {
+    background: linear-gradient(145deg, #1a1a1a, #252525);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #555;
+}
+
+.project-stats h3 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.6rem;
+    color: #daa520;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.quick-action-card {
+    background: linear-gradient(145deg, #1a1a1a, #252525);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #555;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.quick-action-card:hover {
+    transform: translateY(-5px);
+    border-color: #8a2be2;
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+}
+
+.quick-action-card h4 {
+    color: #daa520;
+    font-family: 'MedievalSharp', cursive;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.quick-action-card p {
+    color: #c0c0c0;
+    margin-bottom: 20px;
+}
+
+.status-indicator {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 0.9rem;
+    margin: 5px;
+}
+
+.status-active {
+    background: linear-gradient(145deg, #228b22, #1a6a1a);
+    color: #fff;
+}
+
+.status-inactive {
+    background: linear-gradient(145deg, #8b0000, #6a0000);
+    color: #fff;
+}
+
+.status-pending {
+    background: linear-gradient(145deg, #daa520, #b8860b);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .project-details {
+        padding: 25px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-stats > div {
+        grid-template-columns: 1fr;
+    }
 }

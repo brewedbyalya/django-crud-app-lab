@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ action }} Task - {{ project.name }}{% endblock %}
+
+{% block content %}
+<div class="add-form-container">
+    <div class="add-form">
+        <h2>{{ action }} Task for: {{ project.name }}</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label>📋 Task Title:</label>
+                {{ form.title }}
+            </div>
+            
+            <div class="form-group">
+                <label>📝 Description:</label>
+                {{ form.description }}
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                <div class="form-group">
+                    <label>🔄 Status:</label>
+                    {{ form.status }}
+                </div>
+                
+                <div class="form-group">
+                    <label>⚡ Priority:</label>
+                    {{ form.priority }}
+                </div>
+                
+                <div class="form-group">
+                    <label>📅 Due Date:</label>
+                    {{ form.due_date }}
+                </div>
+                
+                <div class="form-group">
+                    <label>👤 Assign To:</label>
+                    {{ form.assigned_to }}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>🏷️ Tags:</label>
+                {{ form.tags }}
+                <small style="color: #c0c0c0; display: block; margin-top: 5px;">
+                    Hold Ctrl/Cmd to select multiple tags
+                </small>
+            </div>
+            
+            <div class="form-actions-centered">
+                <button type="submit" class="btn btn-save">💾 {% if action == 'Add' %}Create{% else %}Update{% endif %} Task</button>
+                <a href="{% if action == 'Add' %}{% url 'main_app:tasks_index' project.id %}{% else %}{% url 'main_app:task_detail' project.id task.id %}{% endif %}" class="btn btn-cancel">🚫 Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

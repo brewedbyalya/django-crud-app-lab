@@ -4,27 +4,49 @@
 
 {% block content %}
 <div class="project-details">
-    <h2>{{ project.name }}</h2>
+    <h2>📜 {{ project.name }}</h2>
     
     <div class="project-info">
-        <p><strong>Description:</strong><br>{{ project.description }}</p>
-        <p><strong>Created:</strong> {{ project.created_at|date:"M d, Y" }}</p>
-        <p><strong>Last Updated:</strong> {{ project.updated_at|date:"M d, Y" }}</p>
-        <p><strong>Created by:</strong> {{ project.user.username }}</p>
+        <p><strong>🔮 Description:</strong><br>{{ project.description }}</p>
+        <p><strong>🕰️ Created:</strong> {{ project.created_at|date:"F j, Y" }}</p>
+        <p><strong>⚡ Last Updated:</strong> {{ project.updated_at|date:"F j, Y" }}</p>
+        <p><strong>👤 Created by:</strong> {{ project.user.username }}</p>
     </div>
 
     <div class="form-actions">
-        <a href="{% url 'main_app:edit_project' project.id %}" class="btn btn-edit">Edit Project</a>
+        <a href="{% url 'main_app:edit_project' project.id %}" class="btn btn-edit">✏️ Edit Project</a>
         
         <form action="{% url 'main_app:delete_project' project.id %}" method="post" style="display: inline;">
             {% csrf_token %}
             <button type="submit" class="btn btn-delete" 
                     onclick="return confirm('Are you sure you want to delete this project? This action cannot be undone.')">
-                Delete Project
+                🗑️ Delete Project
             </button>
         </form>
         
-        <a href="{% url 'main_app:projects_index' %}" class="btn btn-back">Back to Projects</a>
+        <a href="{% url 'main_app:projects_index' %}" class="btn btn-back">↩️ Back to Projects</a>
+    </div>
+
+    <div class="tasks-section" style="margin-top: 40px;">
+        <h3 style="color: #daa520; border-bottom: 2px solid #555; padding-bottom: 15px; margin-bottom: 25px;">
+            ⚔️ Tasks for this Project
+        </h3>
+        
+        <!-- Placeholder -->
+        <div class="empty-state">
+            <p>📋 No tasks yet. <a href="#" style="color: #8a2be2; text-decoration: none;">Add your first task</a></p>
+        </div>
+    </div>
+
+    <div class="tags-section" style="margin-top: 40px;">
+        <h3 style="color: #daa520; border-bottom: 2px solid #555; padding-bottom: 15px; margin-bottom: 25px;">
+            🏷️ Project Tags
+        </h3>
+        
+        <!-- Placeholder  -->
+        <div class="empty-state">
+            <p>🔖 No tags yet. <a href="#" style="color: #8a2be2; text-decoration: none;">Add some tags</a></p>
+        </div>
     </div>
 </div>
 {% endblock %}

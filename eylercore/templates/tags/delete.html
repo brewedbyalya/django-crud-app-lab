@@ -6,15 +6,13 @@
 <div class="delete-confirm">
     <h2>🗑️ Delete Tag</h2>
     
-    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
-        <span style="display: inline-block; width: 30px; height: 30px; border-radius: 50%; 
-                   background: {{ tag.color }}; margin-right: 15px; border: 3px solid #fff;">
-        </span>
-        <span style="color: #daa520; font-size: 1.5rem; font-weight: bold;">{{ tag.name }}</span>
+    <div class="tag-visual">
+        <span class="tag-color" style="background: {{ tag.color }};"></span>
+        <span class="tag-name">{{ tag.name }}</span>
     </div>
     
     <p class="warning">⚡ Warning: This action cannot be undone!</p>
-    <p>Are you sure you want to delete the tag "<strong style="color: #ff4500;">{{ tag.name }}</strong>"?</p>
+    <p>Are you sure you want to delete the tag "<strong class="tag-name-highlight">{{ tag.name }}</strong>"?</p>
     <p>This tag will be removed from all tasks that use it.</p>
     
     <form method="post">

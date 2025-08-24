@@ -36,23 +36,23 @@
             </div>
         </form>
 
-        <div class="project-stats" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #555;">
-            <h3 style="color: #daa520; text-align: center; margin-bottom: 20px;">📊 Project Statistics</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
-                <div style="text-align: center; padding: 20px; background: rgba(42, 42, 42, 0.5); border-radius: 10px;">
-                    <div style="font-size: 2rem; color: #8a2be2; margin-bottom: 10px;">🕰️</div>
-                    <div style="color: #c0c0c0;">Created</div>
-                    <div style="color: #daa520; font-weight: bold;">{{ project.created_at|date:"M j, Y" }}</div>
+        <div class="project-stats">
+            <h3>📊 Project Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🕰️</div>
+                    <div class="stat-label">Created</div>
+                    <div class="stat-value">{{ project.created_at|date:"M j, Y" }}</div>
                 </div>
-                <div style="text-align: center; padding: 20px; background: rgba(42, 42, 42, 0.5); border-radius: 10px;">
-                    <div style="font-size: 2rem; color: #8a2be2; margin-bottom: 10px;">⚡</div>
-                    <div style="color: #c0c0c0;">Last Updated</div>
-                    <div style="color: #daa520; font-weight: bold;">{{ project.updated_at|date:"M j, Y" }}</div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-label">Last Updated</div>
+                    <div class="stat-value">{{ project.updated_at|date:"M j, Y" }}</div>
                 </div>
-                <div style="text-align: center; padding: 20px; background: rgba(42, 42, 42, 0.5); border-radius: 10px;">
-                    <div style="font-size: 2rem; color: #8a2be2; margin-bottom: 10px;">👤</div>
-                    <div style="color: #c0c0c0;">Owner</div>
-                    <div style="color: #daa520; font-weight: bold;">{{ project.user.username }}</div>
+                <div class="stat-card">
+                    <div class="stat-icon">👤</div>
+                    <div class="stat-label">Owner</div>
+                    <div class="stat-value">{{ project.user.username }}</div>
                 </div>
             </div>
         </div>

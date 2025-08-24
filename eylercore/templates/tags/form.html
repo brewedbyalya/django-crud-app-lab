@@ -14,7 +14,7 @@
                 <label>🏷️ Tag Name:</label>
                 {{ form.name }}
                 {% if form.name.errors %}
-                <div style="color: #ff4500; margin-top: 5px;">
+                <div class="error-message">
                     {{ form.name.errors }}
                 </div>
                 {% endif %}
@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label>🎨 Tag Color:</label>
                 {{ form.color }}
-                <small style="color: #c0c0c0; display: block; margin-top: 5px;">
+                <small class="form-help-text">
                     Choose a color for this tag (default: dark red)
                 </small>
             </div>

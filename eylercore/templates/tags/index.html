@@ -12,35 +12,29 @@
     </div>
 
     {% if tags %}
-    <div class="tags-grid" style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+    <div class="tags-grid">
         {% for tag in tags %}
-        <div class="tag-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); 
-                                   padding: 25px; border-radius: 15px; border: 2px solid #555; 
-                                   position: relative; overflow: hidden;">
-            <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; 
-                           background: {{ tag.color }}; margin-right: 12px; border: 2px solid #fff;">
-                </span>
-                <h3 style="color: #daa520; margin: 0; font-family: 'MedievalSharp', cursive; font-size: 1.4rem;">
-                    {{ tag.name }}
-                </h3>
+        <div class="tag-card">
+            <div class="tag-header">
+                <span class="tag-color-indicator" style="background: {{ tag.color }};"></span>
+                <h3>{{ tag.name }}</h3>
             </div>
             
-            <div style="color: #c0c0c0; margin-bottom: 20px;">
-                <strong>Color:</strong> <span style="color: {{ tag.color }};">{{ tag.color }}</span>
+            <div class="tag-color-info">
+                <strong>Color:</strong> <span class="tag-color-value" style="color: {{ tag.color }};">{{ tag.color }}</span>
             </div>
             
-            <div class="tag-actions" style="display: flex; gap: 12px;">
-                <a href="{% url 'main_app:edit_tag' tag.id %}" class="btn btn-edit" style="padding: 10px 20px; font-size: 0.9rem;">✏️ Edit</a>
-                <a href="{% url 'main_app:delete_tag' tag.id %}" class="btn btn-delete" style="padding: 10px 20px; font-size: 0.9rem;">🗑️ Delete</a>
+            <div class="tag-actions">
+                <a href="{% url 'main_app:edit_tag' tag.id %}" class="btn btn-edit">✏️ Edit</a>
+                <a href="{% url 'main_app:delete_tag' tag.id %}" class="btn btn-delete">🗑️ Delete</a>
             </div>
         </div>
         {% endfor %}
     </div>
     {% else %}
-    <div class="empty-state" style="text-align: center; padding: 60px; color: #8a2be2;">
-        <p style="font-size: 1.3rem;">🏷️ No tags created yet.</p>
-        <a href="{% url 'main_app:add_tag' %}" class="btn btn-save" style="margin-top: 20px;">
+    <div class="empty-state">
+        <p>🏷️ No tags created yet.</p>
+        <a href="{% url 'main_app:add_tag' %}" class="btn btn-save">
             Create Your First Tag
         </a>
     </div>

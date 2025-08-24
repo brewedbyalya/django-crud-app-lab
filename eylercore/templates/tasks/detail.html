@@ -84,7 +84,7 @@
         <a href="{% url 'main_app:edit_task' project.id task.id %}" class="btn btn-edit">✏️ Edit Task</a>
         <a href="{% url 'main_app:delete_task' project.id task.id %}" class="btn btn-delete">🗑️ Delete Task</a>
         <a href="{% url 'main_app:tasks_index' project.id %}" class="btn btn-back">↩️ Back to Tasks</a>
-        <a href="{% url 'main_app:project_detail' project.id %}" class="btn btn-back">🏰 Back to Project</a>
+        <a href="{% url 'main_app:projects_detail' project.id %}" class="btn btn-back">🏰 Back to Project</a>
     </div>
 </div>
 {% endblock %}

@@ -25,7 +25,7 @@
             </div>
             
             <div class="project-actions">
-                <a href="{% url 'main_app:project_detail' project.id %}" class="btn btn-back">View Details</a>
+                <a href="{% url 'main_app:projects_detail' project.id %}" class="btn btn-back">View Details</a>
                 <a href="{% url 'main_app:edit_project' project.id %}" class="btn btn-edit">Edit</a>
                 <a href="{% url 'main_app:tasks_index' project.id %}" class="btn btn-save">Tasks</a>
                 <a href="{% url 'main_app:delete_project' project.id %}" class="btn btn-delete">Delete</a>

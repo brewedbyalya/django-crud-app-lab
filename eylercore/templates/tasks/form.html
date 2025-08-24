@@ -52,7 +52,7 @@
             
             <div class="form-actions-centered">
                 <button type="submit" class="btn btn-save">💾 {% if action == 'Add' %}Create{% else %}Update{% endif %} Task</button>
-                <a href="{% if action == 'Add' %}{% url 'main_app:tasks_index' project.id %}{% else %}{% url 'main_app:task_detail' project.id task.id %}{% endif %}" class="btn btn-cancel">🚫 Cancel</a>
+                <a href="{% url 'main_app:projects_detail' project.id %}" class="btn btn-cancel">🚫 Cancel</a>
             </div>
         </form>
     </div>

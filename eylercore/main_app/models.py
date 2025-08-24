@@ -13,7 +13,7 @@ class Project(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('project_detail', kwargs={'project_id': self.id})
+        return reverse('projects_detail', kwargs={'project_id': self.id})
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)

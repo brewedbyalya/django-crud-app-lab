@@ -32,11 +32,10 @@
             
             <div class="form-actions-centered">
                 <button type="submit" class="btn btn-save">💾 Save Changes</button>
-                <a href="{% url 'main_app:project_detail' project.id %}" class="btn btn-cancel">🚫 Cancel</a>
+                <a href="{% url 'main_app:projects_detail' project.id %}" class="btn btn-cancel">🚫 Cancel</a>
             </div>
         </form>
 
-        <!-- Project Stats -->
         <div class="project-stats" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #555;">
             <h3 style="color: #daa520; text-align: center; margin-bottom: 20px;">📊 Project Statistics</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">

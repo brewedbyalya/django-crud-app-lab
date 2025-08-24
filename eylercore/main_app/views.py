@@ -78,8 +78,10 @@ def tasks_index(request, project_id):
 @login_required
 def task_detail(request, project_id, task_id):
     task = get_object_or_404(Task, id=task_id, project__user=request.user)
-    return render(request, 'tasks/detail.html', {'task': task})
-
+    return render(request, 'tasks/detail.html', {
+        'task': task,
+        'project': task.project
+    })
 @login_required
 def add_task(request, project_id):
     project = get_object_or_404(Project, id=project_id, user=request.user)
@@ -89,7 +91,7 @@ def add_task(request, project_id):
             task = form.save(commit=False)
             task.project = project
             task.save()
-            return redirect('main_app:project_detail', project_id=project.id)
+            return redirect('main_app:projects_detail', project_id=project.id)
     else:
         form = TaskForm()
     return render(request, 'tasks/form.html', {'form': form, 'project': project})
@@ -104,7 +106,13 @@ def edit_task(request, project_id, task_id):
             return redirect('main_app:task_detail', project_id=task.project.id, task_id=task.id)
     else:
         form = TaskForm(instance=task)
-    return render(request, 'tasks/form.html', {'form': form, 'task': task})
+    
+    return render(request, 'tasks/form.html', {
+        'form': form, 
+        'task': task,
+        'project': task.project,
+        'action': 'Edit'
+    })
 
 @login_required
 def delete_task(request, project_id, task_id):
@@ -112,7 +120,7 @@ def delete_task(request, project_id, task_id):
     if request.method == 'POST':
         project_id = task.project.id
         task.delete()
-        return redirect('main_app:project_detail', project_id=project_id)
+        return redirect('main_app:projects_detail', project_id=project_id)
     return render(request, 'tasks/delete.html', {'task': task})
 
 # Tag

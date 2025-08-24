@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=UnifrakturMaguntia&family=MedievalSharp&family=EB+Garamond:wght@400;500;600&display=swap');
 
-/* Base Styles */
 body {
     font-family: 'EB Garamond', serif;
     background: linear-gradient(rgba(20, 0, 0, 0.95), rgba(40, 0, 0, 0.95)),
@@ -12,7 +11,6 @@ body {
     background-attachment: fixed;
 }
 
-/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -40,7 +38,6 @@ body {
     pointer-events: none;
 }
 
-/* Header */
 .header {
     background: linear-gradient(155deg, #280000, #380000),
                 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="%23280000"/><path d="M0,40 L80,40 M40,0 L40,80" stroke="%23600" stroke-width="1" opacity="0.2"/></svg>');
@@ -93,7 +90,6 @@ body {
     text-shadow: 0 0 20px rgba(220, 20, 60, 0.7);
 }
 
-/* Navigation */
 .nav-links {
     margin-top: 30px;
     display: flex;
@@ -151,7 +147,6 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-/* Logout Button */
 .nav-form {
     display: inline;
 }
@@ -195,7 +190,6 @@ body {
     border-color: #ff4500;
 }
 
-/* Button Styles */
 .btn {
     padding: 18px 38px;
     margin: 18px;
@@ -298,7 +292,6 @@ body {
                 inset 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
-/* Form Styles */
 .form-group {
     margin-bottom: 35px;
     position: relative;
@@ -363,7 +356,6 @@ body {
     padding: 0 20px;
 }
 
-/* Project Styles */
 .project-details {
     margin: 35px 0;
     padding: 45px;
@@ -416,7 +408,6 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* List Styles */
 .project-list {
     list-style: none;
     padding: 0;
@@ -474,7 +465,6 @@ body {
     justify-content: center;
 }
 
-/* Delete Confirmation */
 .delete-confirm {
     margin: 45px 0;
     padding: 55px;
@@ -541,7 +531,6 @@ body {
     border-color: #8b0000;
 }
 
-/* Home Page */
 .content h2 {
     color: #daa520;
     font-family: 'UnifrakturMaguntia', cursive;
@@ -571,7 +560,6 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* Auth Pages */
 .auth-page {
     min-height: 80vh;
     display: flex;
@@ -629,7 +617,6 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* Add Form Styles */
 .add-form-container {
     max-width: 850px;
     margin: 0 auto;
@@ -657,7 +644,6 @@ body {
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
 }
 
-/* Error Messages */
 .error-message {
     color: #ff4500;
     font-family: 'MedievalSharp', cursive;
@@ -686,7 +672,6 @@ body {
                 inset -4px -4px 8px rgba(255, 0, 0, 0.1);
 }
 
-/* Auth Links */
 .auth-links {
     text-align: center;
     margin-top: 30px;
@@ -711,7 +696,6 @@ body {
     text-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
 }
 
-/* Form Actions Centered */
 .form-actions-centered {
     margin-top: 45px;
     padding-top: 35px;
@@ -731,7 +715,6 @@ body {
     padding: 0 25px;
 }
 
-/* Tag Styles */
 .tag {
     display: inline-block;
     padding: 6px 14px;
@@ -774,7 +757,6 @@ body {
     margin: 25px 0;
 }
 
-/* Task Styles */
 .tasks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -808,59 +790,15 @@ body {
     background: linear-gradient(to bottom, #8b0000, #dc143c);
 }
 
-/* Status colors */
 .status-todo { background: #600; color: #c0c0c0; }
 .status-in_progress { background: #daa520; color: #000; }
 .status-review { background: #8a2be2; color: #fff; }
 .status-done { background: #228b22; color: #fff; }
 
-/* Task preview */
 .tasks-preview {
     background: linear-gradient(145deg, #200000, #2a0000);
     border: 2px solid #600;
     padding: 30px;
     border-radius: 15px;
     margin: 30px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-    
-    .container {
-        padding: 25px;
-        border-radius: 15px;
-    }
-    
-    .header {
-        padding: 25px;
-    }
-    
-    .header h1 {
-        font-size: 2.8rem;
-    }
-    
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .nav-links a,
-    .nav-form .btn-logout-nav {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .project-actions {
-        flex-direction: column;
-    }
-    
-    .btn {
-        width: 100%;
-        margin: 10px 0;
-        text-align: center;
-    }
 }

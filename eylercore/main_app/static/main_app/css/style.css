@@ -6,11 +6,8 @@
     padding: 0;
 }
 
-/* ==========================================================================
-   VARIABLES
-   ========================================================================== */
+
 :root {
-    /* Colors */
     --primary-dark: #200000;
     --primary-medium: #2a0000;
     --primary-light: #330000;
@@ -29,7 +26,6 @@
     --shadow-medium: rgba(0, 0, 0, 0.4);
     --shadow-light: rgba(0, 0, 0, 0.3);
     
-    /* Spacing */
     --spacing-xs: 5px;
     --spacing-sm: 10px;
     --spacing-md: 15px;
@@ -38,21 +34,16 @@
     --spacing-xxl: 30px;
     --spacing-xxxl: 35px;
     
-    /* Border radius */
     --radius-sm: 5px;
     --radius-md: 10px;
     --radius-lg: 15px;
     --radius-xl: 20px;
     
-    /* Transitions */
     --transition-fast: 0.3s ease;
     --transition-medium: 0.4s ease;
     --transition-slow: 0.8s ease;
 }
 
-/* ==========================================================================
-   BASE STYLES
-   ========================================================================== */
 body {
     font-family: 'EB Garamond', serif;
     background: linear-gradient(rgba(20, 0, 0, 0.95), rgba(40, 0, 0, 0.95));
@@ -63,9 +54,6 @@ body {
     background-attachment: fixed;
 }
 
-/* ==========================================================================
-   LAYOUT COMPONENTS
-   ========================================================================== */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -91,7 +79,6 @@ body {
     pointer-events: none;
 }
 
-/* Header */
 .header {
     background: linear-gradient(155deg, #280000, #380000);
     color: var(--accent-red);
@@ -143,7 +130,6 @@ body {
     text-shadow: 0 0 20px rgba(220, 20, 60, 0.7);
 }
 
-/* Navigation */
 .nav-links {
     margin-top: var(--spacing-xxl);
     display: flex;
@@ -244,9 +230,6 @@ body {
     border-color: var(--accent-orange);
 }
 
-/* ==========================================================================
-   BUTTONS
-   ========================================================================== */
 .btn {
     padding: 18px 38px;
     margin: 18px;
@@ -349,9 +332,6 @@ body {
                 inset 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
-/* ==========================================================================
-   FORM STYLES
-   ========================================================================== */
 .form-group {
     margin-bottom: var(--spacing-xxxl);
     position: relative;
@@ -435,9 +415,6 @@ body {
     padding: 0 var(--spacing-xl);
 }
 
-/* ==========================================================================
-   PROJECT STYLES
-   ========================================================================== */
 .project-details {
     margin: var(--spacing-xxxl) 0;
     padding: 45px;
@@ -547,9 +524,6 @@ body {
     justify-content: center;
 }
 
-/* ==========================================================================
-   TASK STYLES
-   ========================================================================== */
 .tasks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -687,9 +661,6 @@ body {
     min-width: 80px;
 }
 
-/* ==========================================================================
-   TAG STYLES
-   ========================================================================== */
 .tags-grid {
     margin-top: var(--spacing-xxl);
     display: grid;
@@ -754,9 +725,6 @@ body {
     flex: 1;
 }
 
-/* ==========================================================================
-   AUTHENTICATION STYLES
-   ========================================================================== */
 .auth-page {
     min-height: 80vh;
     display: flex;
@@ -838,9 +806,6 @@ body {
     text-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
 }
 
-/* ==========================================================================
-   DELETE CONFIRMATION STYLES
-   ========================================================================== */
 .delete-confirm {
     max-width: 500px;
     margin: 0 auto;
@@ -916,9 +881,6 @@ body {
     color: var(--accent-gold);
 }
 
-/* ==========================================================================
-   MESSAGE STYLES
-   ========================================================================== */
 .messages {
     margin: var(--spacing-xxl) 0;
 }
@@ -975,9 +937,6 @@ body {
                 inset -4px -4px 8px rgba(255, 0, 0, 0.1);
 }
 
-/* ==========================================================================
-   UTILITY CLASSES
-   ========================================================================== */
 .empty-state {
     text-align: center;
     padding: 60px;
@@ -1094,9 +1053,6 @@ transform: translateY(-2px);
 background: #555;
 }
 
-/* ==========================================================================
-FORM COMPONENTS
-========================================================================== */
 .add-form-container {
 padding: 20px;
 }
@@ -1129,9 +1085,6 @@ margin-top: 5px;
 font-size: 0.9rem;
 }
 
-/* ==========================================================================
-PROJECT COMPONENTS
-========================================================================== */
 .projects-container {
 padding: 20px;
 max-width: 1200px;
@@ -1165,9 +1118,6 @@ border-radius: 12px;
 font-size: 0.8rem;
 }
 
-/* ==========================================================================
-TASK COMPONENTS
-========================================================================== */
 .tasks-list {
 margin-top: 20px;
 }
@@ -1235,9 +1185,6 @@ justify-content: center;
 gap: 15px;
 }
 
-/* ==========================================================================
-TAG COMPONENTS
-========================================================================== */
 .tag-filter {
 margin: 20px 0;
 padding: 15px;
@@ -1263,9 +1210,6 @@ margin-bottom: 15px;
 text-align: center;
 }
 
-/* ==========================================================================
-META COMPONENTS
-========================================================================== */
 .task-meta {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1296,9 +1240,6 @@ color: var(--accent-gold);
 font-weight: bold;
 }
 
-/* ==========================================================================
-CONTENT STYLES
-========================================================================== */
 .content h2 {
 color: var(--accent-gold);
 font-family: 'UnifrakturMaguntia', cursive;
@@ -1328,9 +1269,6 @@ line-height: 2;
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* ==========================================================================
-RESPONSIVE STYLES
-========================================================================== */
 @media (max-width: 768px) {
 .action-buttons {
 flex-direction: column;
@@ -1437,9 +1375,6 @@ margin: 0 15px;
 
 }
 
-/* ==========================================================================
-FORM ELEMENT ENHANCEMENTS
-========================================================================== */
 select {
 appearance: none;
 -webkit-appearance: none;
@@ -1470,9 +1405,6 @@ padding-left: 20px;
 margin-bottom: 5px;
 }
 
-/* ==========================================================================
-ANIMATIONS
-========================================================================== */
 @keyframes pulse {
 0%, 100% { transform: scale(1); }
 50% { transform: scale(1.1); }
@@ -1488,9 +1420,6 @@ from { transform: rotate(0deg); }
 to { transform: rotate(360deg); }
 }
 
-/* ==========================================================================
-PRINT STYLES
-========================================================================== */
 @media print {
 .btn, .nav-links, .action-buttons, .task-actions, .tag-actions, .form-actions {
 display: none !important;
